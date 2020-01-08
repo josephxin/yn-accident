@@ -1,0 +1,268 @@
+// 针对 UI 设计稿而做的一些样式重置
+// 也既是 那些 浏览器中有 默认的样式，但需重做
+@import './lib-mixin';
+@import "./lib-variable";
+body,
+html {
+    //font: 12px/1.5 \5FAE\8F6F\96C5\9ED1, \5B8B\4F53, "Hiragino Sans GB", STHeiti, "WenQuanYi Micro Hei", "Droid Sans Fallback", SimSun, sans-serif;
+    font-family: "Microsoft YaHei" !important;
+    width: 100%;
+    height: 100%;
+    line-height: 1.5;
+    font-size: $fz-sm;
+    //font-size: $fz-md;
+    color: $cl-txt;
+}
+
+body {
+    //background-image: url('../images/yunnan-bg.png');
+    background-image: url('../images/background.png');
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+// 多选框样式 兼容性 IE9+
+input[type=checkbox],
+input[type=radio] {
+    display: none;
+}
+
+i.checkbox {
+    font-size: 20px;
+}
+
+// 未选中的checkbox的样式
+i.checkbox:before,
+i.radio:before {
+    content: "\e608";
+    color: #00fffe;
+}
+
+// 选中的checkbox样式
+input[type=checkbox]:checked+i.checkbox:before,
+input[type=radio]:checked+i.radio:before {
+    content: "\e607";
+    color: #00fffe;
+}
+
+// 解决左右出现滚动条时 左右晃动问题
+html {
+    overflow-y: hidden;
+}
+
+:root {
+    overflow-y: auto;
+    //overflow-x: hidden;
+}
+
+:root body {
+    position: initial;
+}
+
+body {
+    //min-width: 1490px;
+    //min-width: 1360px;
+}
+
+// placeholder 样式
+input::-webkit-input-placeholder {
+    /* WebKit browsers */
+    color: #b8d7ff !important
+}
+
+input:-moz-placeholder {
+    /* Mozilla Firefox 4 to 18 */
+    color: #b8d7ff !important
+}
+
+input::-moz-placeholder {
+    /* Mozilla Firefox 19+ */
+    color: #b8d7ff !important
+}
+
+input:-ms-input-placeholder {
+    /* Internet Explorer 10+ */
+    color: #b8d7ff !important
+}
+
+// 滚动条
+::-webkit-scrollbar {
+    width: 6px;
+    height: 8px;
+}
+
+// 定义滚动条轨道
+::-webkit-scrollbar-track {
+    border-radius: 10px;
+    background-color: #18375a;
+}
+
+// 定义滑块
+::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background-color: #0764b4;
+}
+
+// 表格样式
+.table-box {
+    width: 100%;
+    color: $cl-txt;
+    font-size: .14rem;
+    text-align: center;
+    tr {
+        th {
+            text-align: center;
+            font-weight: bold;
+            //height: 0.378rem;
+            height: 41px;
+            font-size: 16px;
+            background-color: rgba(63, 149, 255, 0.3);
+            color: #bcdaff;
+        }
+        td {
+            //height: 0.35rem;
+            height: 40px;
+            font-size: 14px;
+            max-width: 0.98rem;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            padding: 0 0.1rem;
+            color: #bcdaff;
+        }
+        &.active {
+            color: #e0cf06;
+            background-color: #023d8d;
+        }
+        &:nth-child(n+2) {
+            cursor: pointer;
+            background-color: rgba(37, 104, 164, 0.2);
+        }
+    }
+    tr:nth-child(even) {
+        background: none;
+    }
+}
+
+label {
+    color: #B9D7FC;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+input {
+    width: auto;
+    padding: 0 .07rem;
+    color: $cl-txt;
+    background-color: rgba(11, 187, 255, 0.2);
+    border: 1px solid #0D5B8E;
+}
+
+.opacity:hover {
+    opacity: .8;
+}
+
+.base-info-tilte {
+    width: 1.12rem;
+    color: #82A1D6;
+    position: relative;
+    text-align: center;
+    padding: 0.021rem .028rem;
+    //font-size: .14rem;
+    font-size: .16rem;
+    &:after {
+        content: '';
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        background-color: rgba(11, 187, 255, 0.2);
+        border: 1px solid #0C6CF2;
+        transform: perspective(.7em) rotateX(3deg);
+        transform-origin: left;
+    }
+}
+
+.trapezoid-big {
+    background-color: rgba(11, 187, 255, 0.2);
+    border: 1px solid #0C6CF2;
+    margin-left: .084rem;
+    margin-right: .035rem;
+    width: .14rem;
+    -webkit-transform: skewX(30deg);
+}
+
+.trapezoid-smll {
+    background-color: rgba(11, 187, 255, 0.2);
+    border: 1px solid #0C6CF2;
+    width: 0.07rem;
+    -webkit-transform: skewX(30deg);
+}
+
+.show-base-info {
+    position: absolute;
+    right: .14rem;
+    color: #0C6CF2;
+    cursor: pointer;
+    &:hover {
+        color: #EBB161;
+    }
+}
+
+// 淡入淡出动画
+.fade-enter-active {
+    transition: .3s;
+}
+
+.fade-leave-active {
+    transition: .3s;
+}
+
+.fade-enter,
+.fade-leave-to {
+    opacity: 0;
+}
+
+//slide
+// 淡入淡出动画slide,应用于收藏对话框
+.slide-enter-active {
+    transition: .8s;
+}
+
+.slide-leave-active {
+    transition: .3s;
+}
+
+.slide-enter,
+.slide-leave-to {
+    opacity: 0;
+}
+
+.slide-enter {
+    transform: translateX(-40px);
+}
+
+@media screen and (max-width: 1366px) {
+    .base-info-tilte {
+        font-size: 12px;
+    }
+    // 表格样式
+    .table-box {
+        tr {
+            th {
+                height: 32px;
+                font-size: 12px;
+            }
+            td {
+                height: 32px;
+                font-size: 12px;
+            }
+        }
+    }
+    .nodata{
+        font-size: 12px;
+    }
+}
